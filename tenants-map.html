@@ -411,6 +411,7 @@
 				let general_construction = 0;
 				let dirty_conditions = 0;
 				let unsanitary_conditions = 0;
+				let elevator = 0;
 				let year_arr = {};
 				let year_labels = [];
 				let year_data = [];
@@ -459,6 +460,8 @@
 								general_construction++;
 							else if (geom_data.rows[i].complaint_type == "UNSANITARY CONDITIONS")
 								unsanitary_conditions++;
+							else if (geom_data.rows[i].complaint_type == "Elevator")
+								elevator++;
 						}
 						
 						
@@ -468,11 +471,11 @@
 						complaint_chart = new Chart(ctx, {
 							type: 'pie',
 							data: {
-								labels: ["HEAT/HOT WATER","PLUMBING","PAINT/PLASTER","Plumbing","Rodent","Dirty Conditions","General Construction/Plumbing","UNSANITARY CONDITIONS"],
+								labels: ["HEAT/HOT WATER","PLUMBING","PAINT/PLASTER","Plumbing","Rodent","Dirty Conditions","General Construction/Plumbing","UNSANITARY CONDITIONS", "Elevator"],
 								datasets: [{
-											backgroundColor: ['#E31A1C','#FEB24C','#175676','#4BA3C3','#EC5766','#8D3B72','#0C0A3E','#00A878'],
+											backgroundColor: ['#E31A1C','#FEB24C','#175676','#4BA3C3','#EC5766','#8D3B72','#0C0A3E','#00A878', '#f77e04'],
 											borderWidth: 0,
-											data: [heat, plumbing1,paint,plumbing2,rodent,dirty_conditions,general_construction, unsanitary_conditions]
+											data: [heat, plumbing1,paint,plumbing2,rodent,dirty_conditions,general_construction, unsanitary_conditions, elevator]
 										 }]
 							},
 							options: {

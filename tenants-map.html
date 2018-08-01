@@ -80,6 +80,29 @@
 				.clearfix {
     				overflow: auto;
 				}
+				.dashed_line {
+  					border:none;
+  					border-top:2px dashed #000;
+  					color:#fff;
+  					background-color:#fff;
+  					height:1px;
+ 	 				width:15%;
+					margin-right: 10px;
+					float: left;
+				}
+				.solid_line {
+  					border:none;
+  					border-top:2px solid #000;
+  					color:#fff;
+  					background-color:#fff;
+  					height:1px;
+ 	 				width:15%;
+					margin-right: 10px;
+					float: left;
+				}
+				.clearfloat {
+					float: clear;
+				}
 
 				
 
@@ -95,11 +118,27 @@
                 <header>
                     <h1 class = "bold">Tenants Map</h1>
                 </header>
+				<div class="separator"></div>
+				<h5 class="lighter">Lots are shaded according to the number of housing-related 311 complaints made about the property since 2015. Click on a feature for more information about the property's location, units, and complaints.</h5>
+				<div class="separator"></div>
                 <section>
-                    <h4 class="lighter">Click on a feature.</h4>
+					
+					<h4 class="lighter">Legend</h4>
+					<div class="clearfix">
+						<hr class="solid_line"> <p class="legend-text">Contains rent-stabilized units according to <em>both</em> the Rent Guidelines Board and NYC Property Tax Bills. </p>
+					</div>
+					<div class="clearfix">
+						<hr class="dashed_line"> <p class="legend-text">Contains rent-stabilized units according to <em>either</em> the Rent Guidelines Board or NYC Property Tax Bills. </p>
+					</div>
+					
 					
 					<div class="separator"></div>
-					<div id="controls">
+						<h4 class="lighter">Search for a Manhattan address.</h4>
+						<label>Address:</label> <input id="address" onfocus="this.value=''" type="text" name="address" value="" size="20"><br/>
+						<input type="submit" value="Search" onclick="set_address()">
+						<div id="no_results"><p>No results found.</p></div>
+						<div class="separator"></div>
+						<h4 class="lighter">Filter to a community district.</h4>
 						<ul class="actions">
 							<label>Community District:</label> <select id="community_district">
   							<option value="101">101</option>
@@ -118,12 +157,6 @@
 						<input type="submit" value="Search" onclick="set_cd()">
 						<a href="#" onclick="reset_map();" class="reset_map">Reset Map</a>
 						</ul>
-					</div>
-					<div class="separator"></div>
-						<h4 class="lighter">Search for a Manhattan address.</h4>
-						<label>Address:</label> <input id="address" onfocus="this.value=''" type="text" name="address" value="" size="20"><br/>
-						<input type="submit" value="Search" onclick="set_address()">
-						<div id="no_results"><p>No results found.</p></div>
 				</div>
 		</aside>
         <aside class="toolbox">
@@ -473,7 +506,7 @@
 							data: {
 								labels: ["HEAT/HOT WATER","PLUMBING","PAINT/PLASTER","Plumbing","Rodent","Dirty Conditions","General Construction/Plumbing","UNSANITARY CONDITIONS", "Elevator"],
 								datasets: [{
-											backgroundColor: ['#E31A1C','#FEB24C','#175676','#4BA3C3','#EC5766','#8D3B72','#0C0A3E','#00A878', '#f77e04'],
+											backgroundColor: ['#E31A1C','#FEB24C','#175676','#4BA3C3','#EC5766','#8D3B72','#0C0A3E','#00A878', '#f25c10'],
 											borderWidth: 0,
 											data: [heat, plumbing1,paint,plumbing2,rodent,dirty_conditions,general_construction, unsanitary_conditions, elevator]
 										 }]

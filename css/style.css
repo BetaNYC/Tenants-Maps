@@ -49,16 +49,16 @@ p {
 	overflow-y:hidden;
 	
 }
-#info-box {
+#info_box {
 	overflow-y:auto;
 	position:relative;
 	overflow-x:hidden;
 	height:600px;
 }
-#info-box, #canvas1, #canvas2, #canvas3 {
+#info_box, #units_chart, #complaint_type_chart, #complaint_year_chart {
 	display:none;
 }
-.close-button,.reset_map{
+.close_button,.reset_map{
 	font-size:11px;
 	float:right;
 }
@@ -119,6 +119,9 @@ hr {
 
 
 /*Search*/
+.search_label {
+	font-size:14px;
+}
 #no_results {
 	display:none;
 }

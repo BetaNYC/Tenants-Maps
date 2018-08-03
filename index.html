@@ -100,12 +100,19 @@
 					margin-right: 10px;
 					float: left;
 				}
-				.clearfloat {
-					float: clear;
+				.gradient_box {
+					background: linear-gradient(to right, #ffffb2, #b10026);
+					width: 15%;
+					height:15px;
+					float: left;
+					margin-top: 5px;
+					margin-right: 10px;
+					border:0.5px solid black;
 				}
-
+				.margin_bottom {
+					margin-bottom:5px;
+				}
 				
-
 			</style>
     </head>
     
@@ -119,24 +126,22 @@
                     <h1 class = "bold">Tenants Map</h1>
                 </header>
 				<div class="separator"></div>
-				<h5 class="lighter">Lots are shaded according to the number of housing-related 311 complaints made about the property since 2015. Click on a feature for more information about the property's location, units, and complaints.</h5>
+				<h4 class="lighter">Instructions</h4>
+
+				<h5 class="lighter">Click on a feature for more information about the property's units, rent-stabilization, and housing complaints.</h5>
 				<div class="separator"></div>
                 <section>
 					
 					<h4 class="lighter">Legend</h4>
-					<div class="clearfix">
-						<hr class="solid_line"> <p class="legend-text">Contains rent-stabilized units according to <em>both</em> the Rent Guidelines Board and NYC Property Tax Bills. </p>
+					<div class="clearfix margin_bottom">
+						<hr class="solid_line"> <p class="legend-text"> (<em>black solid outline</em>) Contains rent-stabilized units according to <em>both</em> the Rent Guidelines Board and NYC Property Tax Bills. </p>
 					</div>
-					<div class="clearfix">
-						<hr class="dashed_line"> <p class="legend-text">Contains rent-stabilized units according to <em>either</em> the Rent Guidelines Board or NYC Property Tax Bills. </p>
+					<div class="clearfix margin_bottom">
+						<hr class="dashed_line"> <p class="legend-text"> (<em>black dased outline</em>) Contains rent-stabilized units according to <em>either</em> the Rent Guidelines Board or NYC Property Tax Bills. </p>
 					</div>
-					
-					
-					<div class="separator"></div>
-						<h4 class="lighter">Search for a Manhattan address.</h4>
-						<label>Address:</label> <input id="address" onfocus="this.value=''" type="text" name="address" value="" size="20"><br/>
-						<input type="submit" value="Search" onclick="set_address()">
-						<div id="no_results"><p>No results found.</p></div>
+					<div class="clearfix margin_bottom">
+						<div class="gradient_box"></div><p class="legend-text">(<em>parcel color</em>) Tax lots are shaded according to the increasing number of housing-related 311 complaints made about the property since 2015 </p>
+					</div>
 						<div class="separator"></div>
 						<h4 class="lighter">Filter to a community district.</h4>
 						<ul class="actions">
@@ -155,8 +160,14 @@
   							<option value="112">112</option>
 						</select>
 						<input type="submit" value="Search" onclick="set_cd()">
-						<a href="#" onclick="reset_map();" class="reset_map">Reset Map</a>
 						</ul>
+					
+						<div class="separator"></div>
+						<h4 class="lighter">Search for a Manhattan address.</h4>
+						<label>Address:</label> <input id="address" onfocus="this.value=''" type="text" name="address" value="" size="20"><br/>
+						<input type="submit" value="Search" onclick="set_address()">
+						<div id="no_results"><p>No results found.</p></div>
+						<a href="#" onclick="reset_map();" class="reset_map">Reset Map</a>
 				</div>
 		</aside>
         <aside class="toolbox">
@@ -188,7 +199,6 @@
                 apiKey: '0cdd88f5e816766aec13f416ec14b633e6ecb4b6',
                 username: 'betanyc'
             });
-
             var api_key = '0cdd88f5e816766aec13f416ec14b633e6ecb4b6';
             const source_rent = new carto.source.SQL(`
 				
@@ -209,13 +219,11 @@
 					FROM   table_311_buzzfeed_projmap_2015_16_1
 					GROUP BY bbl)
 				),
-
 				m AS (
 					SELECT bbl, SUM(number_complaints) complaints
 					FROM o
 					GROUP BY bbl
 				)
-
 				SELECT right_source.cartodb_id cartodb_id, right_source.the_geom_webmercator the_geom_webmercator, m.complaints, right_source.pluto_bbl, right_source.pluto_policeprct, right_source.rent_pdf_cartodb_id, right_source.rent_pdf_status1, right_source.rent_pdf_status2, right_source.rent_pdf_status3, right_source.pluto_cd, right_source.pluto_council, right_source.pluto_zipcode, right_source.pluto_firecomp, right_source.pluto_address, right_source.pluto_ownername, right_source.pluto_numfloors, right_source.pluto_unitsres, right_source.pluto_unitstotal, right_source.pluto_yearbuilt, right_source.pluto_histdist, right_source.pluto_landmark, right_source.krauss_cartodb_id, right_source.pluto_schooldist
 				FROM m 
 				RIGHT JOIN rent_stabilized_plus_tax_data AS right_source
@@ -223,7 +231,6 @@
 				WHERE right_source.pluto_unitsres > 0
 				`);
 			
-
 			
 			const style_rent = new carto.style.CartoCSS(`
 					#layer {
@@ -271,7 +278,6 @@
 					  }
 					  
 					}
-
 					
             `);
 			
@@ -286,7 +292,6 @@
 				
 				rent_popup_content += `<div class="widget">`;
 				rent_popup_content += `<p class = "bold">${featureEvent.data.pluto_address}</p>`;
-
 				popup.setContent(rent_popup_content);
 				popup.setLatLng(featureEvent.latLng);
 				if (!popup.isOpen()) {
@@ -300,14 +305,12 @@
 			
 			var LabelsPlugin = {afterDatasetsDraw: function(chart) {
 					var ctx = chart.ctx;
-
 					chart.data.datasets.forEach(function(dataset, i) {
 						var meta = chart.getDatasetMeta(i);
 						if (!meta.hidden) {
 							meta.data.forEach(function(element, index) {
 								// Draw the text in black, with the specified font
 								ctx.fillStyle = 'rgb(100, 100, 100)';
-
 								var fontSize = 10;
 								var fontStyle = 'normal';
 								var fontFamily = 'Helvetica Neue';
@@ -319,11 +322,9 @@
 									dataNum = 0;
 								// Just naively convert to string for now
 								var dataString = dataNum.toString();
-
 								// Make sure alignment settings are correct
 								ctx.textAlign = 'center';
 								ctx.textBaseline = 'middle';
-
 								var padding = -15;
 								var position = element.tooltipPosition();
 								
@@ -357,7 +358,6 @@
 						content += `, ${featureEvent.data.rent_pdf_status3}`;
 					content += `</h6>`;
 				}
-
 				content += `
 				<div class="separator"></div>
 				<h4 class = "lighter">Neighborhood Information</h4>
@@ -433,7 +433,6 @@
 						}
 				});
 				console.log("4");
-
 				
 				
 				let heat = 0;
@@ -448,7 +447,6 @@
 				let year_arr = {};
 				let year_labels = [];
 				let year_data = [];
-
 						 
 				var url_311 = "https://betanyc.carto.com/api/v2/sql/?q=SELECT cartodb_id, complaint_type, descriptor, created_date, EXTRACT(year from to_date(created_date, 'MM/DD/YYYY')) AS created_year FROM table_311_buzzfeed_projmap_2015_16_1 WHERE bbl='"+featureEvent.data.pluto_bbl+"' UNION SELECT cartodb_id, complaint_type, descriptor, created_date, EXTRACT(year from to_date(created_date, 'MM/DD/YYYY')) AS created_year FROM table_311_buzzfeed_projmap_2016_1 WHERE bbl='"+featureEvent.data.pluto_bbl+"' UNION SELECT cartodb_id, complaint_type, descriptor, created_date, EXTRACT(year from to_date(created_date, 'MM/DD/YYYY')) AS created_year FROM table_311_buzzfeed_projmap_2017_18_1 WHERE bbl='"+featureEvent.data.pluto_bbl+"' UNION SELECT cartodb_id, complaint_type, descriptor, created_date, EXTRACT(year from to_date(created_date, 'MM/DD/YYYY')) AS created_year FROM table_311_buzzfeed_projmap_after_20180101_1 WHERE bbl='"+featureEvent.data.pluto_bbl+"'&api_key="+api_key;
 				let complaints_count = 0;
@@ -459,7 +457,6 @@
 				.then(function(geom_data) {
 					complaints_count = geom_data.rows.length;
 					complaints_per_unit = geom_data.rows.length/featureEvent.data.pluto_unitsres;
-
 					content_311 += `<div class="separator"></div>
 					<h4 class = "lighter">311 Complaints</h4>
 					<h6 class = "lighter">Total Number of Complaints: ${complaints_count}</h6>
@@ -524,7 +521,6 @@
 									position:'bottom',
 									onClick: null,
 									fullWidth: true
-
 								}
 							}
 						});
@@ -572,14 +568,12 @@
 					else {
 						clear_311_charts();
 					}
-
 					show_info_box();
 					
 				document.getElementById('info').innerHTML = content;
 				document.getElementById('rent_info').innerHTML = content_rent;
 				document.getElementById('311_info').innerHTML = content_311;
 				document.getElementById('source').innerHTML = source;
-
 				});
 			});
 			
@@ -601,20 +595,18 @@
 					FROM   table_311_buzzfeed_projmap_2015_16_1
 					GROUP BY bbl)
 				),
-
 				m AS (
 					SELECT bbl, SUM(number_complaints) complaints
 					FROM o
 					GROUP BY bbl
 				)
-
 				SELECT right_source.cartodb_id cartodb_id, right_source.the_geom_webmercator the_geom_webmercator, m.complaints, right_source.pluto_bbl, right_source.pluto_policeprct, right_source.rent_pdf_cartodb_id, right_source.rent_pdf_status1, right_source.rent_pdf_status2, right_source.rent_pdf_status3, right_source.pluto_cd, right_source.pluto_council, right_source.pluto_zipcode, right_source.pluto_firecomp, right_source.pluto_address, right_source.pluto_ownername, right_source.pluto_numfloors, right_source.pluto_unitsres, right_source.pluto_unitstotal, right_source.pluto_yearbuilt, right_source.pluto_histdist, right_source.pluto_landmark, right_source.krauss_cartodb_id, right_source.pluto_schooldist
 				FROM m 
 				RIGHT JOIN rent_stabilized_plus_tax_data AS right_source
 				ON right_source.pluto_bbl = m.bbl
 				WHERE right_source.pluto_unitsres > 0`);
+				map.setView([40.73, -74], 15);
       		}
-		
 			function filter_map(filter) {
 					source_rent.setQuery(`WITH
 					o AS (
@@ -633,18 +625,17 @@
 						FROM   table_311_buzzfeed_projmap_2015_16_1
 						GROUP BY bbl)
 					),
-
 					m AS (
 						SELECT bbl, SUM(number_complaints) complaints
 						FROM o
 						GROUP BY bbl
 					)
-
 					SELECT right_source.cartodb_id cartodb_id, right_source.the_geom_webmercator the_geom_webmercator, m.complaints, right_source.pluto_bbl, right_source.pluto_policeprct, right_source.rent_pdf_cartodb_id, right_source.rent_pdf_status1, right_source.rent_pdf_status2, right_source.rent_pdf_status3, right_source.pluto_cd, right_source.pluto_council, right_source.pluto_zipcode, right_source.pluto_firecomp, right_source.pluto_address, right_source.pluto_ownername, right_source.pluto_numfloors, right_source.pluto_unitsres, right_source.pluto_unitstotal, right_source.pluto_yearbuilt, right_source.pluto_histdist, right_source.pluto_landmark, right_source.krauss_cartodb_id, right_source.pluto_schooldist
 					FROM m 
 					RIGHT JOIN rent_stabilized_plus_tax_data AS right_source
 					ON right_source.pluto_bbl = m.bbl
 					WHERE right_source.pluto_unitsres > 0`+ filter);
+					
       		}
 		
 			function set_cd() {
@@ -738,22 +729,14 @@
 				})
 				.catch(function(error) {
 					document.getElementById('no_results').style.display = 'block';
-
 				});
 			
 			}
 			//Labels on Points on Chart.js Charts
-
-
-
             client.getLeafletLayer().addTo(map);
             
             const popup = L.popup({ closeButton: false });
-
-
-
 								
 		</script>
     </body>
 </html>
-

@@ -9,7 +9,7 @@
             <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
             <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
             <!-- Include CARTO.js -->
-            <script src="https://libs.cartocdn.com/carto.js/v4.0.8/carto.min.js"></script>
+            <script src="https://libs.cartocdn.com/carto.js/v4.1.2/carto.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
             <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
 			<link href="css/style.css" rel="stylesheet">
@@ -52,29 +52,34 @@
 					<h4 class="lighter">Filter to a community district.</h4>
 					<ul class="actions">
 						<label class="search_label">Community District:</label>
-						<select id="community_district">
-  							<option value="101">101</option>
-  							<option value="102">102</option>
-  							<option value="103">103</option>
-  							<option value="104">104</option>
-							<option value="105">105</option>
-							<option value="106">106</option>
-  							<option value="107">107</option>
-  							<option value="108">108</option>
-  							<option value="109">109</option>
-							<option value="110">110</option>
-							<option value="111">111</option>
-  							<option value="112">112</option>
-						</select>
+						<div class="select_cd">
+							<select id="community_district">
+								<option value="101">101</option>
+								<option value="102">102</option>
+								<option value="103">103</option>
+								<option value="104">104</option>
+								<option value="105">105</option>
+								<option value="106">106</option>
+								<option value="107">107</option>
+								<option value="108">108</option>
+								<option value="109">109</option>
+								<option value="110">110</option>
+								<option value="111">111</option>
+								<option value="112">112</option>
+							</select>
+						<div class="select_arrow_cd"></div>
+						</div>
 						<input type="submit" value="Search" onclick="set_cd()">
 					</ul>
 				<div class="separator"></div>
 				
 				<!-- location search -->
-					<h4 class="lighter">Search for a Manhattan address.</h4>
-					<label class="search_label">Address:</label> <input id="address" onfocus="this.value=''" type="text" name="address" value="" size="20"><br/>
-					<input type="submit" value="Search" onclick="set_address()">
-					<div id="no_results"><p>No results found.</p></div>
+					<h4 class="lighter">Search</h4>
+						<input id="address" placeholder="Enter a Manhattan Address" onfocus="this.value=''" type="text" name="address" value="" class="search_bar"><br/>
+						<input type="submit" value="Search" onclick="set_address()">
+						<div id="no_results">
+							<p>No results found.</p>
+						</div>
 					<a href="#" onclick="reset_map();" class="reset_map">Reset Map</a>
 			</div>
 		</aside>
@@ -225,6 +230,7 @@
 				}
 			});
 			
+			//variables for charts
 			var complaint_chart;
 			var year_chart;
 			var units_year_chart;
@@ -519,8 +525,8 @@
 						clear_311_charts();
 					}
 					
-					//set the info_box to display as block
-					show_info_box();
+				//set the info_box to display as block
+				show_info_box();
 				
 				//fill the innerHTML of each section
 				document.getElementById('info').innerHTML = content;

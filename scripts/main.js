@@ -107,7 +107,7 @@ function parseExtent(extent) {
 
 function set_address() {
 	//Use the City's Geoclient API to search for an address
-	var boro = "Manhattan";
+	var boro = "Manhattan"
 	var adr = document.getElementById("address").value;
 	
 	//adds CORS header to proxy request getting around errors
@@ -133,7 +133,6 @@ function set_address() {
 		//if nothing gets returned, display no results
 		document.getElementById('no_results').style.display = 'block';
 	});
-
 }
 
 //Displays

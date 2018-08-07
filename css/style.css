@@ -5,15 +5,18 @@
 }
 
 html {
-	box-sizing:border-box; height:100%;
+	box-sizing:border-box;
+	height:100%;
 }
 
 body {
 	background:#f2f6f9;
 	height:100%;
 	font-family:"lato";
-	font-weight:normal;overflow: hidden;
+	font-weight:normal;
+	overflow: hidden;
 }
+
 h1, h2, h3 {
 	font-family:"Playfair Display" !important;
 	font-weight:1000 !important;
@@ -30,6 +33,7 @@ h1 {
 h4 {
 	text-align:center;
 }
+
 h5, h6 {
 	text-align:justify;
 }
@@ -40,9 +44,11 @@ h4, h5, h6 {
 	padding-bottom: 5px;
 	margin: 0px 0px !important;
 }
+
 label {
 	font-family:"lato" !important;
 }
+
 p {
 	font-family:"lato" !important;
 }
@@ -51,6 +57,7 @@ p {
 .bold {
 	font-weight:bold !important;
 }
+
 .lighter {
 	color:#444444;
 }
@@ -68,29 +75,35 @@ p {
 	z-index: 2;
 	overflow-y:hidden;
 }
+
 .toolbox {
 	position:relative;
 	overflow-y:hidden;
 	
 }
+
 #info_box {
 	overflow-y:auto;
 	position:relative;
 	overflow-x:hidden;
 	height:600px;
 }
+
 #info_box, #units_chart, #complaint_type_chart, #complaint_year_chart {
 	display:none;
 }
+
 .close_button,.reset_map{
 	font-size:11px;
 	float:right;
 }
+
 .separator{
 	min-height: 1px;
 	background-color: rgba(46, 60, 67, 0.08);
 	margin: 16px 0;
 }
+
 .box {
 	height:100%;
 	overflow-y:auto;
@@ -104,9 +117,11 @@ hr {
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
+
 .legend-text {
 	font-size:11px;
 }
+
 .dashed_line {
 	border:none;
 	border-top:2px dashed #000;
@@ -117,6 +132,7 @@ hr {
 	margin-right: 10px;
 	float: left;
 }
+
 .solid_line {
 	border:none;
 	border-top:2px solid #000;
@@ -127,6 +143,7 @@ hr {
 	margin-right: 10px;
 	float: left;
 }
+
 .gradient_box {
 	background: linear-gradient(to right, #ffffb2, #b10026);
 	width: 15%;
@@ -152,6 +169,7 @@ hr {
 .leaflet-left {
 	left:28%;
 }
+
 @media all and (max-width: 650px) {
     .leaflet-left{
         left: 178px;
@@ -175,6 +193,7 @@ hr {
 .search_label {
 	font-size:14px;
 }
+
 #no_results {
 	display:none;
 }
@@ -204,6 +223,7 @@ input[type=submit] {
 	width: 100%;
 	margin-bottom: 5px;
 }
+
 .select_cd {
 	position: relative;
 	display: inline-block;
@@ -267,6 +287,7 @@ input[type=submit] {
 	border-style: solid;
 	border-color: #7b7b7b transparent transparent transparent;
 }
+
 .select_arrow_cd {
 	position: absolute;
 	top: 7px;
@@ -278,6 +299,7 @@ input[type=submit] {
 	border-style: solid;
 	border-color: #7b7b7b transparent transparent transparent;
 }
+
 .select_custom select:hover ~ .select_arrow, .select_cd select:hover ~ .select_arrow,
 .select_custom select:focus ~ .select_arrow, .select_cd select:focus ~ .select_arrow {
 	border-top-color: #000;
@@ -292,6 +314,7 @@ input[type=submit] {
 .clearfix {
 	overflow: auto;
 }
+
 .margin_bottom {
 	margin-bottom:5px;
 }

@@ -97,25 +97,18 @@ p {
 #about {
 	margin-top:20px;
 }
+
 .logo {
-	width:90px;
-	margin-left:10px;
-	margin-right:10px;
+	width:50px;
+	margin:auto;
+	display:block;
 }
 
 .logo_caption {
 	font-size:10px;
 	text-align:center;
+	margin-top:5px;
 }
-
-.figure {
-	float:right;
-}
-
-.about_text {
- 	float:left;
-}
-
 
 .toolbox {
 	position:relative;

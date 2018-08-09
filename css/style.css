@@ -69,11 +69,29 @@ p {
 	left: 0px;
 	bottom:0px;
 	width: 30%;
-	min-width:200px;
-	max-width: 30%;
+	/*min-width:200px;
+	max-width: 30%;*/
 	height:100%;
 	z-index: 2;
 	overflow-y:hidden;
+}
+
+@media all and (min-width: 1000px) {
+    .toolbox_left {
+		width:350px
+	}
+}
+
+@media all and (max-width: 1000px) {
+    .toolbox_left {
+		width:300px
+	}
+}
+
+@media all and (max-width: 800px) {
+    .toolbox_left {
+		width:200px
+	}
 }
 
 .toolbox {
@@ -166,11 +184,19 @@ hr {
 	margin:10px;
 }
 
-.leaflet-left {
-	left:28%;
+@media all and (min-width: 1000px) {
+    .leaflet-left{
+        left: 328px;
+    }
 }
 
-@media all and (max-width: 650px) {
+@media all and (max-width: 1000px) {
+    .leaflet-left{
+        left: 278px;
+    }
+}
+
+@media all and (max-width: 800px) {
     .leaflet-left{
         left: 178px;
     }

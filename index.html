@@ -92,8 +92,9 @@
 				<div id="info"></div>
 				
 				<!-- rent-stabilized info -->
-				<div id="rent_info"></div>
+				<div id="rent_header"></div>
 				<canvas id="units_chart"></canvas>
+				<div id="rent_info"></div>
 				
 				<!-- 311 info -->
 				<div id="311_info"></div>
@@ -275,6 +276,7 @@
 			layer_rent.on('featureClicked', featureEvent => {
 				//variables for the innerHTML content that will be filled into each div in the infobox
 				let content = '';
+				let content_rent_header = '';
 				let content_rent = '';
 				let content_311 = '';
 				let source = '';
@@ -314,10 +316,11 @@
 					content += `<h6 class = "lighter">Landmark: ${featureEvent.data.pluto_landmark}</h6>`;
 				
 				//rent-stabilized info
-				content_rent += `<div class="separator"></div>
+				content_rent_header += `<div class="separator"></div>
 					<h4 class = "lighter">Rent-Stabilized Units</h4>`;
 				
 				//query john krauss's tax data (stored in Carto) for all entries with the bbl of the selected unit; select the number of units stabilized for each year
+				var percent_change = 0;
 				var url_tax = "https://betanyc.carto.com/api/v2/sql/?q=SELECT cartodb_id, _2007uc, _2008uc, _2009uc, _2010uc, _2011uc, _2012uc, _2013uc, _2014uc, _2015uc, _2016uc FROM john_krauss_tax_data WHERE ucbbl='"+featureEvent.data.pluto_bbl+"'&api_key="+api_key;
 				fetch(url_tax)
 				.then(function(response) {
@@ -330,9 +333,6 @@
 							units_year_chart.clear();
 							units_year_chart.destroy();
 						}
-						
-						//calculate the percent change in units between 2007 and 2016
-						percent_change = ((tax_data.rows[0]._2016uc - tax_data.rows[0]._2007uc)/tax_data.rows[0]._2007uc)*100;
 						
 						//create rent-stabilized units per year line chart
 						ctx3 = document.getElementById("units_chart").getContext('2d');
@@ -370,13 +370,19 @@
 									}
 								}
 							});
+							//calculate the percent change in units between 2007 and 2016
+							percent_change = ((tax_data.rows[0]._2016uc - tax_data.rows[0]._2007uc)/tax_data.rows[0]._2007uc)*100;
+							if (percent_change != Infinity & percent_change != NaN){
+								content_rent += `<h6 class = "lighter">% Change since 2007: ${percent_change.toFixed(2)}%</h6>`;
+								console.log(percent_change);
+							}
 							
-							content_rent += `<h6 class = "lighter">% Change since 2007: ${percent_change.toFixed(2)}%</h6>`;
 						}
 						else {
 							clear_rent_charts();
 							content_rent += `<h6 class = "lighter">No Available Data</h6>`;
 						}
+						
 				});
 				
 				//variables used to count the number of each complaint type at the selected bbl
@@ -534,6 +540,7 @@
 				
 				//fill the innerHTML of each section
 				document.getElementById('info').innerHTML = content;
+				document.getElementById('rent_header').innerHTML = content_rent_header;
 				document.getElementById('rent_info').innerHTML = content_rent;
 				document.getElementById('311_info').innerHTML = content_311;
 				document.getElementById('source').innerHTML = source;

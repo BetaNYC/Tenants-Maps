@@ -14,6 +14,6 @@ At BetaNYC, we have scraped the PDFs listing rent-stabilized units throughout th
 
 ## Copyrights 
 
-Please see [license.md] file for details.
+Please see [license] file for details.
  * Non-code, Creative Commons Attribution 4.0
  * Code, GNU General Public License

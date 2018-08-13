@@ -1,6 +1,6 @@
 # Tenants-Maps
 
-At BetaNYC, we have scraped the PDFs listing rent-stabilized units throughout the City put out by the Rent Guidelines Board. We then designed Tenants Map - a map that displays the location of rent-stabilized units throughout Manhattan. The map separately highlights the properties listed in the Rent Guidelines Board dataset and the NYC tax bill dataset scraped by John Krauss, allowing users to compare the accuracy of the two datasets. When users click on a property, they are provided with additional information about the property owner, the rent-stabilization programs in which the owner participates, and the number of rent-stabilized units in the building from 2007 to 2016. Users can also see the number of housing-related 311 complaints made about the property since 2015 - including those made about heat/hot water, plumbing, paint/plaster, rodents, dirty conditions, and elevators. Finally, users can filter the map to display only the properties in a particular community district. We hope the tool can help buildings where owners are harassing rent-stabilized tenants out of their units to make way for high-rent leases. 
+At BetaNYC, we have scraped the PDFs listing rent-stabilized units throughout the City put out by the Rent Guidelines Board. We then designed [Tenants Map](https://tenants.beta.nyc/) - a map that displays the location of rent-stabilized units throughout Manhattan. The map separately highlights the properties listed in the Rent Guidelines Board dataset and the NYC tax bill dataset scraped by John Krauss, allowing users to compare the accuracy of the two datasets. When users click on a property, they are provided with additional information about the property owner, the rent-stabilization programs in which the owner participates, and the number of rent-stabilized units in the building from 2007 to 2016. Users can also see the number of housing-related 311 complaints made about the property since 2015 - including those made about heat/hot water, plumbing, paint/plaster, rodents, dirty conditions, and elevators. Finally, users can filter the map to display only the properties in a particular community district. We hope the tool can help buildings where owners are harassing rent-stabilized tenants out of their units to make way for high-rent leases. 
 
 ## File an Issue 
 We're tracking all issues via this [repo's issue cue](https://github.com/BetaNYC/Tenants-Maps/issues).
@@ -21,7 +21,7 @@ We're tracking all issues via this [repo's issue cue](https://github.com/BetaNYC
 
 ### Initial Commit v0.5
 
-* Users can view all residential Manhattan properties on map, colored according to the number of 311 complaints
+* Users can view all residential Manhattan properties on map, colored according to the number of 311 complaints, and outlined if they contain rent-stabilized units according to the Rent Guidelines Board and NYC tax bills. Parcels that are only listed in one of these datasets are outlined with a dashed line, indicating that the data about whether it contains rent-stabilized units is inconsistent.
 * On feature hover, users can view parcel address
 * On feature click, users can view parcel information, including - property information, neighborhood information, rent-stabilization status, and breakdown of 311 complaints
 * Users can search for Manhattan address and zoom to that location

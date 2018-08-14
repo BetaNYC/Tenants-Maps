@@ -29,6 +29,6 @@ We're tracking all issues via this [repo's issue cue](https://github.com/BetaNYC
 
 ## Copyrights 
 
-Please see [license] file for details.
+Please see [license](https://github.com/BetaNYC/Tenants-Maps/blob/master/LICENSE) file for details.
  * Non-code, Creative Commons Attribution 4.0
  * Code, GNU General Public License

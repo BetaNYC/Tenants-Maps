@@ -146,6 +146,15 @@ p {
 	background-color:#fff;
 }
 
+#footer {
+	text-align:center !important;
+}
+
+.footer_text {
+	font-size:11px;
+}
+
+
 /*Icons and Legends*/
 hr {
 	margin-bottom: 10px;

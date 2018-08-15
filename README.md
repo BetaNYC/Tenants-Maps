@@ -13,6 +13,9 @@ At BetaNYC, we have scraped the PDFs listing rent-stabilized units throughout th
   * Clearly state the purpose of your change in the description field for each commit.
 
 ## Architecture
+Tenants Map is a landing page that displays a Carto basemap and polygons for each building containing residential units in Manhattan. Data to produce the polygons are stored in shapefiles in Carto and queried on the page load. Units are outlined with a solid black line if they contain rent-stabilized units according to both the Rent Guidelines Board and NYC property tax bills, and outlined with a dashed black line if they contain rent-stabilized units according to either. Units are colored according to the number of housing-related 311 complaints made about the property since 2015. Data about housing-related 311 complaints since 2015 are also stored in Carto (as separate files because of their size). They are joined to the shapefiles along shared BBL fields. 
+
+Clicking on a polygon further queries the datasets stored in Carto for additional information about the selected building's 311 complaints and rent-stabilization status. 311 datasets in Carto are regularly automatically synced with 311 data stored in the NYC Open Data Portal. Searching for a NYC location queries the City's Geoclient API for the geo-coordinates that correspond to the entered address, and the map repositions to this location. Filtering to a community district queries Carto to get the bounds of the district from a shapefile of all NYC community districts; the map filters to only display polygons int this community district and repositions to center around these bounds.
 
 ## Backend Services
 

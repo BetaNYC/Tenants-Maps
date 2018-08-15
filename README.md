@@ -155,4 +155,4 @@ Please see [license](https://github.com/BetaNYC/Tenants-Maps/blob/master/LICENSE
  
 ## Have Questions?
 
-Contact [Lindsay Poirier](mailto:lindsay@beta.nyc) and [Noel Hidalgo](mailto:noel@beta.nyc).
+Contact [Lindsay Poirier](mailto:lindsay@beta.nyc), [Emily Goldman](mailto:emily@beta.nyc), and [Noel Hidalgo](mailto:noel@beta.nyc).

@@ -20,20 +20,20 @@ At BetaNYC, we have scraped the PDFs listing rent-stabilized units throughout th
 
 Most of the data for Tenants Map is stored in BetaNYC's carto account.
 * `table_311_buzzfeed_projmap_after_20180101_1`
-  * Dataset of all 311 complaints with complaint types () made in Manhattan since the start of 2018
-  * [Published]() as a BetaNYC-filtered view on NYC's Open Data Portal
+  * Dataset of all 311 complaints with housing-related complaint types ('HEAT/HOT WATER', 'PLUMBING', 'PAINT/PLASTER', 'Plumbing', 'Rodent', 'Dirty Conditions', 'General Construction/Plumbing', 'UNSANITARY CONDITIONS', and 'Elevator)' made in Manhattan since the start of 2018
+  * [Published](https://data.cityofnewyork.us/Social-Services/311-BuzzFeed-ProjMap-After-20180101/tcea-gv95) as a BetaNYC-filtered view on NYC's Open Data Portal
   * Data is updated in the Open Data Portal daily and synced with BetaNYC's Carto account daily.
 * `table_311_buzzfeed_projmap_2017_18_1`
-  * Dataset of all 311 complaints with complaint types () made in Manhattan from 2017-2018
-  * [Published]() as a BetaNYC-filtered view on NYC's Open Data Portal
+  * Dataset of all 311 complaints with housing-related complaint types made in Manhattan from 2017-2018
+  * [Published](https://data.cityofnewyork.us/Social-Services/311-BuzzFeed-ProjMap-2017-18/mz7d-pviy) as a BetaNYC-filtered view on NYC's Open Data Portal
   * Data is updated in the Open Data Portal daily and synced with BetaNYC's Carto account daily.
 * `table_311_buzzfeed_projmap_2016_1`
-  * Dataset of all 311 complaints with complaint types () made in Manhattan from 2016-2017
-  * [Published]() as a BetaNYC-filtered view on NYC's Open Data Portal
+  * Dataset of all 311 complaints with housing-related complaint types made in Manhattan from 2016-2017
+  * [Published](https://data.cityofnewyork.us/Social-Services/311-BuzzFeed-ProjMap-2016/73kp-hgxn) as a BetaNYC-filtered view on NYC's Open Data Portal
   * Data is updated in the Open Data Portal daily and synced with BetaNYC's Carto account daily.
 * `table_311_buzzfeed_projmap_2015_16_1`
-  * Dataset of all 311 complaints with complaint types () made in Manhattan from 2015-2016
-  * [Published]() as a BetaNYC-filtered view on NYC's Open Data Portal
+  * Dataset of all 311 complaints with housing-related complaint types made in Manhattan from 2015-2016
+  * [Published](https://data.cityofnewyork.us/Social-Services/311-BuzzFeed-ProjMap-2015-16/kgfk-43n8) as a BetaNYC-filtered view on NYC's Open Data Portal
   * Data is updated in the Open Data Portal daily and synced with BetaNYC's Carto account daily.
 * `rent_stabilized_plus_tax_data`
   * Dataset created after joining three other datasets: 1) Data about buildings containing rent-stabilized units [scraped](https://github.com/joepope44/nyc_housing) from the [Rent Guidelines Board Rent Stabilized Buildings Lists](https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page), 2) [Data](http://taxbills.nyc/) reporting number of rent-stabilized units listed on each NYC building's tax bill by year, 3) Shapefile of NYC lots or [MapPLUTO](https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page). Each row was joined along the shared BBL field.
@@ -88,11 +88,13 @@ ON left_source.pluto_bbl = right_source.ucbbl`
 
   * Data is joined in Carto, downloaded, and re-uploaded annually.
 * `john_krauss_tax_data`
-  * Dataset reporting number of rent-stabilized units listed on each NYC building's tax bill by year.
+  * Dataset reporting number of rent-stabilized units listed on each NYC building's tax bill by year. 
+  * This dataset is only queried when users click on a property. 
   * [Published](http://taxbills.nyc/) by Civic Hacker John Krauss after he scraped the data for all property tax bills in the City.
   * Data is updated yearly.
 * `nycd`
   * Shapefile of all NYC community districts.
+  * This dataset is only queried when users select to filter to a community district. Aftering filtering the map to only display lots that are part of the selected community district, the map zooms to the bounds of the polygon representing the selected community district in this shapefile.
   * [Published](https://data.cityofnewyork.us/City-Government/Community-Districts/yfnk-k7r4) by the Department of City Planning 
   * Data is as need in the Open Data Portal. 
 
@@ -113,7 +115,7 @@ We use Chart.js to display a pie chart depicting the breakdown of 311 complaints
 * [Documentation](http://www.chartjs.org/docs/latest/)
 
 ### NYC Geoclient API
-We use the City's Geoclient API for a few tasks. 
+When users enter a text address into the location search field, the system queries the Geoclient API for the lat/lon of that location.
 * [Source](https://developer.cityofnewyork.us/api/geoclient-api)
 * [Documentation](https://api.cityofnewyork.us/geoclient/v1/doc)
 

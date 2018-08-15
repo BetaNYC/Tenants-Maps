@@ -37,7 +37,8 @@ Most of the data for Tenants Map is stored in BetaNYC's carto account.
   * Data is updated in the Open Data Portal daily and synced with BetaNYC's Carto account daily.
 * `rent_stabilized_plus_tax_data`
   * Dataset created after joining three other datasets: 1) Data about buildings containing rent-stabilized units [scraped](https://github.com/joepope44/nyc_housing) from the [Rent Guidelines Board Rent Stabilized Buildings Lists](https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page), 2) [Data](http://taxbills.nyc/) reporting number of rent-stabilized units listed on each NYC building's tax bill by year, 3) Shapefile of NYC lots or [MapPLUTO](https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page). Each row was joined along the shared BBL field.
-  * Join 1: `SELECT row_number() over() as cartodb_id,
+  * Join 1: 
+  `SELECT row_number() over() as cartodb_id,
 				pluto.the_geom as the_geom,
 				pluto.the_geom_webmercator,
 				rent_pdf.cartodb_id as rent_pdf_cartodb_id,
@@ -74,7 +75,9 @@ Most of the data for Tenants Map is stored in BetaNYC's carto account.
 				FROM (SELECT * FROM nyc_pdf_scrape_1) AS rent_pdf
 				RIGHT JOIN (SELECT * FROM mnmappluto) AS pluto
 				ON rent_pdf.bbl = pluto.bbl`
-        * Join 2: `SELECT 
+        
+	* Join 2: 
+	`SELECT 
 row_number() over() as cartodb_id,
 left_source.the_geom as the_geom,
 left_source.the_geom_webmercator as the_geom_webmercator, left_source.cartodb_id as rent_stabilized_parcels_cartodb_id, left_source.pluto_policeprct, left_source.rent_pdf_cartodb_id as rent_pdf_cartodb_id, left_source.rent_pdf_status1, left_source.rent_pdf_status2, left_source.rent_pdf_status3, left_source.rent_pdf_bbl, left_source.pluto_cartodb_id as pluto_cartodb_id, left_source.pluto_borough, left_source.pluto_cd, left_source.pluto_ct2010, left_source.pluto_cb2010, left_source.pluto_schooldist, left_source.pluto_council, left_source.pluto_zipcode, left_source.pluto_firecomp, left_source.pluto_healthcent, left_source.pluto_healtharea, left_source.pluto_sanitdistr, left_source.pluto_address, left_source.pluto_bldgclass, left_source.pluto_ownername, left_source.pluto_numbldgs, left_source.pluto_numfloors, left_source.pluto_unitsres, left_source.pluto_unitstotal, left_source.pluto_yearbuilt, left_source.pluto_yearalter1, left_source.pluto_yearalter2, left_source.pluto_histdist, left_source.pluto_landmark, left_source.pluto_bbl, right_source.cartodb_id as krauss_cartodb_id, right_source.ownername as krauss_ownername

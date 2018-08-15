@@ -75,8 +75,7 @@ Most of the data for Tenants Map is stored in BetaNYC's carto account.
 				FROM (SELECT * FROM nyc_pdf_scrape_1) AS rent_pdf
 				RIGHT JOIN (SELECT * FROM mnmappluto) AS pluto
 				ON rent_pdf.bbl = pluto.bbl`
-        
-	* Join 2: 
+  * Join 2: 
 	`SELECT 
 row_number() over() as cartodb_id,
 left_source.the_geom as the_geom,

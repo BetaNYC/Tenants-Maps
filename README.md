@@ -39,7 +39,7 @@ Most of the data for Tenants Map is stored in BetaNYC's carto account.
   * [Published](https://data.cityofnewyork.us/Social-Services/311-BuzzFeed-ProjMap-2015-16/kgfk-43n8) as a BetaNYC-filtered view on NYC's Open Data Portal
   * Data is updated in the Open Data Portal daily and synced with BetaNYC's Carto account daily.
 * `rent_stabilized_plus_tax_data`
-  * Dataset created after joining three other datasets: 1) Data about buildings containing rent-stabilized units [scraped](https://github.com/joepope44/nyc_housing) from the [Rent Guidelines Board Rent Stabilized Buildings Lists](https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page), 2) [Data](http://taxbills.nyc/) reporting number of rent-stabilized units listed on each NYC building's tax bill by year, 3) Shapefile of NYC lots or [MapPLUTO](https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page). Each row was joined along the shared BBL field.
+  * Dataset created after joining three other datasets: 1) Data about buildings containing rent-stabilized units [scraped](https://github.com/joepope44/nyc_housing) from the [Rent Guidelines Board Rent Stabilized Buildings Lists](https://www1.nyc.gov/site/rentguidelinesboard/resources/rent-stabilized-building-lists.page), 2) [Data](https://github.com/talos/nyc-stabilization-unit-counts#data-usage) reporting number of rent-stabilized units listed on each NYC building's tax bill by year, 3) Shapefile of NYC lots or [MapPLUTO](https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page). Each row was joined along the shared BBL field.
   * Join 1: 
   `SELECT row_number() over() as cartodb_id,
 				pluto.the_geom as the_geom,

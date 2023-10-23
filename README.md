@@ -94,8 +94,8 @@ ON left_source.pluto_bbl = right_source.ucbbl`
   * Dataset reporting number of rent-stabilized units listed on each NYC building's tax bill by year. 
   * This dataset is only queried when users click on a property. 
   * Published by Civic Hacker John Krauss after he scraped the data for all property tax bills in the City.
-  * The [taxbills.nyc](taxbills.nyc) website is currently down, but you can access the [Wayback Machine archive of taxbills.nyc](http://web.archive.org/web/20200808040422/http://taxbills.nyc/) to see all the data.
-  * The most widely used CSV files for analysis are also now hosted elsewhere for consistent access. These files and the descriptions of their contents can be found on [his GitHub](https://github.com/talos/nyc-stabilization-unit-counts).
+  * The [taxbills.nyc](https://taxbills.nyc) website is currently down, but you can access the [Wayback Machine archive of taxbills.nyc](http://web.archive.org/web/20200808040422/http://taxbills.nyc/) to see all the data.
+  * The most widely used CSV files for analysis are also now hosted elsewhere for consistent access. These files and the descriptions of their contents can be found on [his GitHub](https://github.com/talos/nyc-stabilization-unit-counts#data-usage).
   * Data is updated yearly.
 * `nycd`
   * Shapefile of all NYC community districts.
